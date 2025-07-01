@@ -1,20 +1,17 @@
-//your JS code here. If required.
 document.getElementById("voteForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // Prevent actual form submission
+  e.preventDefault();
 
   const name = document.getElementById("name").value.trim();
   const age = document.getElementById("age").value.trim();
+  const numericAge = parseInt(age);
 
-  // Validate inputs
-  if (name === "" || age === "") {
+  // Enhanced validation
+  if (name === "" || age === "" || isNaN(numericAge) || numericAge < 0) {
     alert("Please enter valid details.");
     return;
   }
 
-  // Convert age to number
-  const numericAge = parseInt(age);
-
-  // Promise logic
+  // Promise with delay
   new Promise((resolve, reject) => {
     setTimeout(() => {
       if (numericAge >= 18) {
@@ -31,3 +28,4 @@ document.getElementById("voteForm").addEventListener("submit", function (e) {
       alert(`Oh sorry ${username}. You aren't old enough.`);
     });
 });
+
